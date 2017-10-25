@@ -1,0 +1,14 @@
+PComm Web Services fault list
+-----------------------------------
+
+FaultCode	| FaultString
+------------|----------
+	000		|	Unknown Exception + exception description
+	001		|	Unable to access web services, bad credentials
+	002		|	Unable to access method, need higher privileges
+	003		|	Could not connect: mysql error
+	004		|	Can't use <selectedDB>: mysql error
+	005		|	No data in <selected> table
+	006		|	Unable to get <selectedEntity>: mysql error
+	007		|	
+	008		|

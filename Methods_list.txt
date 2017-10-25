@@ -1,0 +1,32 @@
+PComm WebServices
+
+Utils
+- GetUsers				admin
+- GetCommonPots			admin
+- GetRoles
+- GetTBFElements 		admin
+- GetTBFElementsByCPID
+- GetSettings 			admin
+- GetSettingsByUserCP
+- UpdateSettings
+
+Authenticate
+- CheckUserAuth
+
+Account managment
+- CreateUser
+- ConsultUser
+- UpdateUser
+- DeleteUser			admin
+
+Common pot managment
+- CreateCommPot
+- ConsultCommPot
+- UpdateCommPot
+- DeleteCommPot			admin
+
+TBF element managment
+- CreateTBFElement
+- ConsultTBFElement
+- UpdateTBFElement
+- DeleteTBFElement
