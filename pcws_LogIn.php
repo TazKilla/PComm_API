@@ -42,6 +42,7 @@ function LogIn($method_name, $data_in) {
                 "AND password = '".$userPassword."';";
             $dbResultCheckLogin = mysqli_query($connectPC, $queryCheckLogin);
 
+//            If mysqli_query failed
             if (!$dbResultCheckLogin) {
 
                 $faultCode = "000";
