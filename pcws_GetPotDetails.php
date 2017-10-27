@@ -6,7 +6,12 @@
  * Time: 15:50
  */
 
-// Get pot details
+/** Get pot details
+ *
+ * From Pot ID, return participant list and to be fund element list
+ *
+ * @param
+ */
 function GetPotDetails($method_name, $data_in) {
 
     $function = "getpotdetails";
