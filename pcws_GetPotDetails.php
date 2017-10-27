@@ -35,7 +35,7 @@ function GetPotDetails($method_name, $data_in) {
             $potId = $data_in[0]["pot_id"];
 
             /* ######################################################## */
-            /* ######## A: Logic to get all user participation ######## */
+            /* ####### A: Logic to get all element from the pot ####### */
             /* ######################################################## */
 
             $queryGetPotDetails = "SELECT id_tbf_element " .
@@ -69,7 +69,7 @@ function GetPotDetails($method_name, $data_in) {
                 do {
 
                     /* ######################################################## */
-                    /* ######### B: Logic to get all user pot details ######### */
+                    /* ####### B: Logic to get all element pot details ######## */
                     /* ######################################################## */
 
                     $queryGetPotName = "SELECT label, value " .
@@ -150,7 +150,7 @@ function GetPotDetails($method_name, $data_in) {
 //                    }
 //
 //                    if ($subRow = mysqli_fetch_array($dbResultGetTBFElements, MYSQLI_BOTH)) {
-////                        TODO: had logic for TBFElements
+////                        TODO: add logic for TBFElements
 //                    } else {
 //
 //                        $faultCode = "NOK";
