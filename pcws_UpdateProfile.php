@@ -6,7 +6,14 @@
  * Time: 18:51
  */
 
-// SignIn
+/**
+ * Get user data from mobile app, and update each item if exists.
+ *
+ * @param $method_name String The method name, not used here
+ * @param $data_in Array Contains all user data to update
+ *
+ * @return mixed Array Returns action result
+ */
 function UpdateProfile($method_name, $data_in) {
 
     $dbTable = "user";

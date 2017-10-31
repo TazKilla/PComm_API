@@ -6,11 +6,13 @@
  * Time: 15:50
  */
 
-/** Get pot details
+/**
+ * From Pot ID, returns participant list and to be fund element list.
  *
- * From Pot ID, return participant list and to be fund element list
+ * @param $method_name String The method name, not used here
+ * @param $data_in Array Contains pot ID
  *
- * @param
+ * @return mixed Array Returns action result, and pot data if OK
  */
 function GetPotDetails($method_name, $data_in) {
 

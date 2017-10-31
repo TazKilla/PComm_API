@@ -6,7 +6,14 @@
  * Time: 17:11
  */
 
-// Check if user name exists
+/**
+ * Get user name from mobile app, and check if exists in order to add it in a new pot.
+ *
+ * @param $method_name String The method name, not used here
+ * @param $data_in Array Contains user name
+ *
+ * @return mixed Array Returns action result
+ */
 function CheckUserName($method_name, $data_in) {
 
     $dbTable = "user";

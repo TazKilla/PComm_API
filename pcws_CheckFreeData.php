@@ -6,7 +6,14 @@
  * Time: 19:22
  */
 
-// Check if user name and email are available
+/**
+ * Check if user name and email are available.
+ *
+ * @param $method_name String The method name, not used here
+ * @param $data_in Array Contains user name and email
+ *
+ * @return mixed Array Returns action result
+ */
 function CheckFreeData($method_name, $data_in) {
 
     $dbTable = "user";

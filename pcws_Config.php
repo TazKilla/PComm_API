@@ -6,7 +6,9 @@
  * Time: 12:16
  */
 
-// PComm database info
+/**
+ * PComm database info
+ */
 define("server_pcommdb", "127.0.0.1");
 define("user_pcommdb", "pcommAdmin");
 define("passwd_pcommdb", "PC0mmDBOI");

@@ -6,7 +6,15 @@
  * Time: 12:16
  */
 
-// LogIn
+/**
+ * Get user name and password from mobile app, and checks if credentials are good.
+ *
+ * @param $method_name String The method name, not used here
+ * @param $data_in Array Contains user credentials and system info
+ *
+ * @return mixed Array Returns login result
+ *
+ */
 function LogIn($method_name, $data_in) {
 
     $dbTable = "user";

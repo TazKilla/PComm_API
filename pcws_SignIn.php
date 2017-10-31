@@ -6,7 +6,14 @@
  * Time: 18:32
  */
 
-// SignIn
+/**
+ * Get user data and credentials from mobile app to create new account.
+ *
+ * @param $method_name String The method name, not used here
+ * @param $data_in Array Contains all user data and credentials
+ *
+ * @return mixed Array Returns sign in result and user ID if OK
+ */
 function SignIn($method_name, $data_in) {
 
     $dbTable = "user";

@@ -6,6 +6,12 @@
  * Time: 12:16
  */
 
+/**
+ * Creates or update log file.
+ *
+ * @param $function String The function name to identify log file
+ * @param $text String The log text to write
+ */
 function writeLogs($function, $text) {
     $date = date("Y-m-d - ");
     $datetime = date("Y-m-d H:i:s - ");
@@ -15,6 +21,11 @@ function writeLogs($function, $text) {
     file_put_contents($filename, $datetime.$text."\r\n", FILE_APPEND | LOCK_EX);
 }
 
+/**
+ * Creates and returns mysqli object
+ *
+ * @return mysqli DB Connection object
+ */
 function connectDB() {
     // Connect to PComm database
     $connPC = mysqli_connect(server_pcommdb, user_pcommdb, passwd_pcommdb, dbname_pcommdb);
@@ -34,6 +45,16 @@ function connectDB() {
     return $connPC;
 }
 
+/**
+ * Check if specified value exists in the specified table for a specified attribute.
+ *
+ * @param $DBLink mysqli The data base connection
+ * @param $DBTable String The table to check in
+ * @param $attribute String The attribute to check
+ * @param $value String The value to look for
+ *
+ * @return bool True if the value doesn't exists, false if exists
+ */
 function checkFreeValue($DBLink, $DBTable, $attribute, $value) {
 
     $queryCheckFreeValue = "SELECT id " .
@@ -60,9 +81,15 @@ function checkFreeValue($DBLink, $DBTable, $attribute, $value) {
     }
 }
 
+/**
+ * Decrypt a string in the same way as the mobile app.
+ *
+ * @param $string String The string to decrypt
+ * @param $secret String  The key used to encrypt/decrypt string
+ * @return string String The decrypted string
+ */
 function decrypt($string, $secret) {
     $string = base64_decode($string);
-//    $code = hex2bin($string);
 
     $td = mcrypt_module_open('rijndael-128', '', 'ecb', '');
 
@@ -74,13 +101,3 @@ function decrypt($string, $secret) {
 
     return utf8_encode(trim($decrypted));
 }
-//
-//function hex2bin($hexdata) {
-//    $bindata = '';
-//
-//    for ($i = 0; $i < strlen($hexdata); $i += 2) {
-//        $bindata .= chr(hexdec(substr($hexdata, $i, 2)));
-//    }
-//
-//    return $bindata;
-//}

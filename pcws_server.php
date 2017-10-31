@@ -6,8 +6,10 @@
  * Time: 12:16
  */
 
-/*
+/**
  * PHP PComm XMLRPC Server
+ *
+ * Creates XMLRPC server, registers all methods and run listener.
  */
 
 require_once ('pcws_Config.php');

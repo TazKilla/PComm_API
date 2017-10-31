@@ -6,7 +6,14 @@
  * Time: 18:56
  */
 
-// CreatePot
+/**
+ * Get new pot data from mobile app, and create it on data base.
+ *
+ * @param $method_name String The method name, not used here
+ * @param $data_in Array Contains new pot data
+ *
+ * @return mixed Array Returns pot creation result
+ */
 function CreatePot($method_name, $data_in) {
 
     $function = "createpot";

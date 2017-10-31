@@ -6,7 +6,15 @@
  * Time: 10:49
  */
 
-// Get pots from user Id
+/**
+ * Get user ID from mobile app and send back pots data.
+ *
+ * @param $method_name String The method name, not used here
+ * @param $data_in Array Contains user ID
+ *
+ * @return mixed Array Returns get pots result, and pot list if OK
+ */
+
 function GetPotsFromUserId($method_name, $data_in) {
 
     $function = "getpotsfromuserid";
