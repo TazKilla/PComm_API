@@ -1,0 +1,4 @@
+---
+motd_file: motd.j2
+motd_env: Cloud@Cost
+motd_message: Welcome on your Cloud@Cost instance, TazKilla ;D

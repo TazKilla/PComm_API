@@ -1,0 +1,16 @@
+---
+- name: Remove landscape-common package
+  become: yes
+  apt:
+   name: landscape-common
+   state: absent
+   purge: yes
+
+- name: Create motd file
+  become: yes
+  template:
+    src: "{{ motd_file }}"
+    dest: /etc/motd
+    owner: root
+    group: root
+    mode: 0644

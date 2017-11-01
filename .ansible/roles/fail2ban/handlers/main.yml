@@ -1,0 +1,4 @@
+---
+- name: restart fail2ban
+  become: true
+  action: service name=fail2ban state=restarted

@@ -1,0 +1,21 @@
+---
+- name: Install Let's Encrypt CertBot
+  become: true
+  git:
+    repo: "{{ certbot_repo }}"
+    dest: "{{ certbot_dir }}"
+    version: "{{ certbot_version }}"
+    update: "{{ certbot_keep_updated }}"
+
+- name: Ensure Let's Encrypt CertBot is executable.
+  become: true
+  file:
+    path: "{{ certbot_dir }}/certbot-auto"
+    mode: 0755
+
+- name: Create certbot-auto symlink
+  become: true
+  file:
+    src: "{{ certbot_dir }}/certbot-auto"
+    dest: /usr/local/bin/certbot-auto
+    state: link

@@ -1,0 +1,16 @@
+##############
+# ALIAS FILE #
+##############
+
+######
+# File lists
+alias la='ls -a'    # List all
+alias ll='ls -alh'  # List detailed
+
+#####
+# Ask confirmation when removing or overwriting files
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# :mode=shellscript:

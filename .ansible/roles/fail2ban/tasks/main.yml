@@ -1,0 +1,14 @@
+---
+- name: Install Fail2Ban
+  become: true
+  apt:
+    pkg: fail2ban
+    state: installed
+
+- name: Configure Fail2Ban local jails
+  become: true
+  template:
+    src: jail.local.j2
+    dest: /etc/fail2ban/jail.local
+    mode: 0644
+  notify: restart fail2ban
