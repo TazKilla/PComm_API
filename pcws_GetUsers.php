@@ -15,27 +15,12 @@ function GetUsers($method_name, $data_in) {
 		if ($data_in[0]['user'] == user_webserv && $data_in[0]['password'] == passwd_webserv) {
             if ($data_in[0]['role'] == role_webserv) {
                 // Connect to PComm database
-                $connPC = mysql_connect(server_pcommdb, user_pcommdb, passwd_pcommdb, true);
+                $connPC = mysqli_connect(server_pcommdb, user_pcommdb, passwd_pcommdb, dbname_pcommdb);
 
                 if (!$connPC) {
 
                     $faultCode = "003";
-                    $faultString = "Could not connect: " . mysql_error();
-
-                    $responseFault = array(
-                        'faultCode' => $faultCode,
-                        'faultString' => $faultString
-                    );
-                    return $responseFault;
-
-                }
-
-                $selectPC = mysql_select_db(dbname_pcommdb, $connPC);
-
-                if (!$selectPC) {
-
-                    $faultCode = "004";
-                    $faultString = "Can't use ".dbname_pcommdb." DB: " . mysql_error();
+                    $faultString = "Could not connect: " . mysqli_error($connPC);
 
                     $responseFault = array(
                         'faultCode' => $faultCode,
@@ -49,15 +34,15 @@ function GetUsers($method_name, $data_in) {
                 $responseArray = array();
                 $status = "OK";
 
-                $queryGetUsers = "SELECT id, first_name, last_name, user_name, email_address " .
+                $queryGetUsers = "SELECT id, first_name, last_name, user_name, email_address, currency " .
                     "FROM ".$dbtable_pcommdb.";";
-                $dbresultGetUsers = mysql_query($queryGetUsers);
+                $dbresultGetUsers = mysqli_query($connPC, $queryGetUsers);
 
                 if (!$dbresultGetUsers) {
 
                     $status = "NOK";
                     $faultCode = "006";
-                    $faultString = "Unable to get ".$dbtable_pcommdb."s: " . mysql_error();
+                    $faultString = "Unable to get ".$dbtable_pcommdb."s: " . mysqli_error($connPC);
 
                     $responseFault = array(
                         'faultCode' => $faultCode,
@@ -66,7 +51,7 @@ function GetUsers($method_name, $data_in) {
                     return $responseFault;
                 }
 
-                if ($row = mysql_fetch_array($dbresultGetUsers, MYSQL_BOTH)) {
+                if ($row = mysqli_fetch_array($dbresultGetUsers, MYSQL_BOTH)) {
 
                     $responseArray[0]['faultCode'] = "OK";
                     $i = 1;
@@ -77,9 +62,10 @@ function GetUsers($method_name, $data_in) {
                         $responseArray[$i]['last_name'] = $row[2];
                         $responseArray[$i]['user_name'] = $row[3];
                         $responseArray[$i]['email_address'] = $row[4];
+                        $responseArray[$i]['currency'] = $row[5];
                         $i++;
 
-                    } while ($row = mysql_fetch_array($dbresultGetUsers, MYSQL_BOTH));
+                    } while ($row = mysqli_fetch_array($dbresultGetUsers, MYSQL_BOTH));
 
                 } else {
 

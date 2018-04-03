@@ -24,6 +24,7 @@ require_once ('pcws_GetPotsFromUserId.php');
 require_once ('pcws_GetEmailFromUserName.php');
 require_once ('pcws_CheckUserName.php');
 require_once ('pcws_GetPotDetails.php');
+require_once ('pcws_UpdateProfile.php');
 
 // Read an XMLRPC request through the input stream
 $request_xml = file_get_contents("php://input");
@@ -42,6 +43,7 @@ xmlrpc_server_register_method($xmlrpc_server, "GetPotsFromUserId", "GetPotsFromU
 xmlrpc_server_register_method($xmlrpc_server, "GetEmailFromUserName", "GetEmailFromUserName");
 xmlrpc_server_register_method($xmlrpc_server, "CheckUserName", "CheckUserName");
 xmlrpc_server_register_method($xmlrpc_server, "GetPotDetails", "GetPotDetails");
+xmlrpc_server_register_method($xmlrpc_server, "UpdateProfile", "UpdateProfile");
 
 // Start the server listener
 header('Content-Type: text/xml');

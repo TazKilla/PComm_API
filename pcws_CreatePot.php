@@ -201,24 +201,24 @@ function CreatePot($method_name, $data_in) {
                 $dbresultCreateTBFElem = mysqli_query($connectPC, $queryTBFEToCommPot);
             }
 
-            $subject = "Vous participez à un nouveau pot commun !";
-            foreach ($notification as $userData) {
-                $to      = $userData["address"];
-                $message = "Bonjour " . $userData["name"] . ", vous avez été inscrit au pot commun " . $potName . ".\n".
-                    "Consultez l'application pour voir tous les détails.";
-                $headers = 'From: guilohm.roche@gmail.com' . "\r\n" .
-                    'Reply-To: guilohm.roche@gmail.com' . "\r\n" .
-                    'X-Mailer: PHP/' . phpversion();
-
-                $resultMail = mail($to, $subject, $message, $headers);
-                if (!$resultMail) {
-                    $log = "Unable to send email to " . $userData["name"] . ", email: " . $userData["address"];
-                    writeLogs($function, $log);
-                } else {
-                    $log = "Email sent to " . $userData["name"] . ", email: " . $userData["address"];
-                    writeLogs($function, $log);
-                }
-            }
+//            $subject = "Vous participez à un nouveau pot commun !";
+//            foreach ($notification as $userData) {
+//                $to      = $userData["address"];
+//                $message = "Bonjour " . $userData["name"] . ", vous avez été inscrit au pot commun " . $potName . ".\n".
+//                    "Consultez l'application pour voir tous les détails.";
+//                $headers = 'From: guilohm.roche@gmail.com' . "\r\n" .
+//                    'Reply-To: guilohm.roche@gmail.com' . "\r\n" .
+//                    'X-Mailer: PHP/' . phpversion();
+//
+//                $resultMail = mail($to, $subject, $message, $headers);
+//                if (!$resultMail) {
+//                    $log = "Unable to send email to " . $userData["name"] . ", email: " . $userData["address"];
+//                    writeLogs($function, $log);
+//                } else {
+//                    $log = "Email sent to " . $userData["name"] . ", email: " . $userData["address"];
+//                    writeLogs($function, $log);
+//                }
+//            }
 
             $responseArray[0]['faultCode'] = "OK";
 

@@ -9,27 +9,12 @@ function GetRoles($method_name, $data_in) {
 		if ($data_in[0]['user'] == user_webserv && $data_in[0]['password'] == passwd_webserv) {
             if ($data_in[0]['role'] == role_webserv) {
                 // Connect to PComm database
-                $connPC = mysql_connect(server_pcommdb, user_pcommdb, passwd_pcommdb, true);
+                $connPC = mysqli_connect(server_pcommdb, user_pcommdb, passwd_pcommdb, dbname_pcommdb);
 
                 if (!$connPC) {
 
                     $faultCode = "003";
-                    $faultString = "Could not connect: " . mysql_error();
-
-                    $responseFault = array(
-                        'faultCode' => $faultCode,
-                        'faultString' => $faultString
-                    );
-                    return $responseFault;
-
-                }
-
-                $selectPC = mysql_select_db(dbname_pcommdb, $connPC);
-
-                if (!$selectPC) {
-
-                    $faultCode = "004";
-                    $faultString = "Can't use ".dbname_pcommdb." DB: " . mysql_error();
+                    $faultString = "Could not connect: " . mysqli_error($connPC);
 
                     $responseFault = array(
                         'faultCode' => $faultCode,
@@ -45,13 +30,13 @@ function GetRoles($method_name, $data_in) {
 
                 $queryGetRoles = "SELECT id, label, description " .
                     "FROM ".$dbtable_pcommdb.";";
-                $dbresultGetRoles = mysql_query($queryGetRoles);
+                $dbresultGetRoles = mysqli_query($connPC, $queryGetRoles);
 
                 if (!$dbresultGetRoles) {
 
                     $status = "NOK";
                     $faultCode = "006";
-                    $faultString = "Unable to get ".$dbtable_pcommdb."s: " . mysql_error();
+                    $faultString = "Unable to get ".$dbtable_pcommdb."s: " . mysqli_error($connPC);
 
                     $responseFault = array(
                         'faultCode' => $faultCode,
@@ -60,7 +45,7 @@ function GetRoles($method_name, $data_in) {
                     return $responseFault;
                 }
 
-                if ($row = mysql_fetch_array($dbresultGetRoles, MYSQL_BOTH)) {
+                if ($row = mysqli_fetch_array($dbresultGetRoles, MYSQL_BOTH)) {
 
                     $i = 0;
                     do {
@@ -70,7 +55,7 @@ function GetRoles($method_name, $data_in) {
                         $responseArray[$i][2] = $row[2];
                         $i++;
 
-                    } while ($row = mysql_fetch_array($dbresultGetRoles, MYSQL_BOTH));
+                    } while ($row = mysqli_fetch_array($dbresultGetRoles, MYSQL_BOTH));
 
                 } else {
 

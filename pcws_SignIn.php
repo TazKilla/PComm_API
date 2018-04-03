@@ -79,23 +79,23 @@ function SignIn($method_name, $data_in) {
                 return $responseFault;
             }
 
-            $userEmail = decrypt($email, "equiermentforencazertyui");
-            $subject = "Bienvenue sur PComm !";
-            $to      = $userEmail;
-            $message = "Bonjour " . $userName . ", vous venez de vous inscrire sur PComm.\n".
-                "Veuillez cliquer sur le lien suivant pour confirmer votre inscription.";
-            $headers = 'From: guilohm.roche@gmail.com' . "\r\n" .
-                'Reply-To: guilohm.roche@gmail.com' . "\r\n" .
-                'X-Mailer: PHP/' . phpversion();
-
-            $resultMail = mail($to, $subject, $message, $headers);
-            if (!$resultMail) {
-                $log = "Unable to send email to " . $userName . ", email: " . $userEmail;
-                writeLogs($function, $log);
-            } else {
-                $log = "Email sent to " . $userName . ", email: " . $userEmail;
-                writeLogs($function, $log);
-            }
+//            $userEmail = decrypt($email, "equiermentforencazertyui");
+//            $subject = "Bienvenue sur PComm !";
+//            $to      = $userEmail;
+//            $message = "Bonjour " . $userName . ", vous venez de vous inscrire sur PComm.\n".
+//                "Veuillez cliquer sur le lien suivant pour confirmer votre inscription.";
+//            $headers = 'From: guilohm.roche@gmail.com' . "\r\n" .
+//                'Reply-To: guilohm.roche@gmail.com' . "\r\n" .
+//                'X-Mailer: PHP/' . phpversion();
+//
+//            $resultMail = mail($to, $subject, $message, $headers);
+//            if (!$resultMail) {
+//                $log = "Unable to send email to " . $userName . ", email: " . $userEmail;
+//                writeLogs($function, $log);
+//            } else {
+//                $log = "Email sent to " . $userName . ", email: " . $userEmail;
+//                writeLogs($function, $log);
+//            }
 
             $responseArray[0]['faultCode'] = "OK";
             $responseArray[0]['userID'] = mysqli_insert_id($connectPC);

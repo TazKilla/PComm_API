@@ -10,11 +10,14 @@
  * PComm database info
  */
 define("server_pcommdb", "127.0.0.1");
-define("user_pcommdb", "pcommAdmin");
-define("passwd_pcommdb", "PC0mmDBOI");
-define("dbname_pcommdb", "pcomm_dev");
+define("user_pcommdb", "root");
+define("passwd_pcommdb", "T4lk4mynN");
+define("dbname_pcommdb", "pcomm_db");
+//define("user_pcommdb", "pcommAdmin");
+//define("passwd_pcommdb", "PC0mmDBOI");
+//define("dbname_pcommdb", "pcomm_dev");
 define("user_webserv", "wsAdmin");
 define("passwd_webserv" , "wsPWD");
-define("role_webserv" , "admin");
+define("role_webserv" , "Super administrator");
 
 ?>

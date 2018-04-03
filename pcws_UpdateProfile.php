@@ -40,14 +40,14 @@ function UpdateProfile($method_name, $data_in) {
             // Initiate variables
             $responseArray = array();
 
-            $userID = $data_in[0]['user_id'];
-            $firstName = $data_in[0]['first_name'];
-            $lastName = $data_in[0]['last_name'];
-            $userName = $data_in[0]['user_name'];
-            $email = $data_in[0]['email_address'];
-            $password = $data_in[0]['user_password'];
-            $currency = $data_in[0]['currency'];
-            $idRole = $data_in[0]['id_role'];
+            $userID = array_key_exists('user_id', $data_in[0]) ? $data_in[0]['user_id'] : "";
+            $firstName = array_key_exists('first_name', $data_in[0]) ? $data_in[0]['first_name'] : "";
+            $lastName = array_key_exists('last_name', $data_in[0]) ? $data_in[0]['last_name'] : "";
+            $userName = array_key_exists('user_name', $data_in[0]) ? $data_in[0]['user_name'] : "";
+            $email = array_key_exists('email_address', $data_in[0]) ? $data_in[0]['email_address'] : "";
+            $password = array_key_exists('user_password', $data_in[0]) ? $data_in[0]['user_password'] : "";
+            $currency = array_key_exists('currency', $data_in[0]) ? $data_in[0]['currency'] : "";
+            $idRole = array_key_exists('id_role', $data_in[0]) ? $data_in[0]['id_role'] : "";
 
             $first = true;
             $queryUpdateUser = "UPDATE ".$dbTable." SET ";
@@ -55,45 +55,45 @@ function UpdateProfile($method_name, $data_in) {
                 $queryUpdateUser = $queryUpdateUser."first_name = '".$firstName."' ";
                 $first = false;
             }
-            if (!$first) {
-                $queryUpdateUser = $queryUpdateUser.", ";
-            }
             if ($lastName != "") {
+                if (!$first) {
+                    $queryUpdateUser = $queryUpdateUser.", ";
+                }
                 $queryUpdateUser = $queryUpdateUser."last_name = '".$lastName."'";
                 $first = false;
             }
-            if (!$first) {
-                $queryUpdateUser = $queryUpdateUser.", ";
-            }
             if ($userName != "") {
+                if (!$first) {
+                    $queryUpdateUser = $queryUpdateUser.", ";
+                }
                 $queryUpdateUser = $queryUpdateUser."user_name = '".$userName."'";
                 $first = false;
             }
-            if (!$first) {
-                $queryUpdateUser = $queryUpdateUser.", ";
-            }
             if ($email != "") {
+                if (!$first) {
+                    $queryUpdateUser = $queryUpdateUser.", ";
+                }
                 $queryUpdateUser = $queryUpdateUser."email_address = '".$email."'";
                 $first = false;
             }
-            if (!$first) {
-                $queryUpdateUser = $queryUpdateUser.", ";
-            }
             if ($password != "") {
+                if (!$first) {
+                    $queryUpdateUser = $queryUpdateUser.", ";
+                }
                 $queryUpdateUser = $queryUpdateUser."password = '".$password."'";
                 $first = false;
             }
-            if (!$first) {
-                $queryUpdateUser = $queryUpdateUser.", ";
-            }
             if ($currency != "") {
+                if (!$first) {
+                    $queryUpdateUser = $queryUpdateUser.", ";
+                }
                 $queryUpdateUser = $queryUpdateUser."currency = '".$currency."'";
                 $first = false;
             }
-            if (!$first) {
-                $queryUpdateUser = $queryUpdateUser.", ";
-            }
             if ($idRole != "") {
+                if (!$first) {
+                    $queryUpdateUser = $queryUpdateUser.", ";
+                }
                 $queryUpdateUser = $queryUpdateUser."id_role = ".$idRole."";
             }
             $queryUpdateUser = $queryUpdateUser." WHERE id = ".$userID.";";
@@ -119,7 +119,7 @@ function UpdateProfile($method_name, $data_in) {
                 );
 
                 // Write in logs
-                $log = "UpdateProfile failed : ".$faultString.": ".mysqli_error($connectPC);
+                $log = "UpdateProfile failed : ".$faultString.": ".mysqli_error($connectPC)." Query: ".$queryUpdateUser;
                 writeLogs($method_name, $log);
                 $log = "############################################";
                 writeLogs($method_name, $log);
@@ -127,26 +127,26 @@ function UpdateProfile($method_name, $data_in) {
                 return $responseFault;
             }
 
-            if ($email != "") {
-
-                $userEmail = decrypt($email, "equiermentforencazertyui");
-                $subject = "Modification de votre compte PComm !";
-                $to = $userEmail;
-                $message = "Bonjour " . $userName . ", vous venez de modifier votre compte PComm.\n" .
-                    "Veuillez cliquer sur le lien suivant pour confirmer votre nouvel email.";
-                $headers = 'From: guilohm.roche@gmail.com' . "\r\n" .
-                    'Reply-To: guilohm.roche@gmail.com' . "\r\n" .
-                    'X-Mailer: PHP/' . phpversion();
-
-                $resultMail = mail($to, $subject, $message, $headers);
-                if (!$resultMail) {
-                    $log = "Unable to send email to " . $userName . ", email: " . $userEmail;
-                    writeLogs($method_name, $log);
-                } else {
-                    $log = "Email sent to " . $userName . ", email: " . $userEmail;
-                    writeLogs($method_name, $log);
-                }
-            }
+//            if ($email != "") {
+//
+//                $userEmail = decrypt($email, "equiermentforencazertyui");
+//                $subject = "Modification de votre compte PComm !";
+//                $to = $userEmail;
+//                $message = "Bonjour " . $userName . ", vous venez de modifier votre compte PComm.\n" .
+//                    "Veuillez cliquer sur le lien suivant pour confirmer votre nouvel email.";
+//                $headers = 'From: guilohm.roche@gmail.com' . "\r\n" .
+//                    'Reply-To: guilohm.roche@gmail.com' . "\r\n" .
+//                    'X-Mailer: PHP/' . phpversion();
+//
+//                $resultMail = mail($to, $subject, $message, $headers);
+//                if (!$resultMail) {
+//                    $log = "Unable to send email to " . $userName . ", email: " . $userEmail;
+//                    writeLogs($method_name, $log);
+//                } else {
+//                    $log = "Email sent to " . $userName . ", email: " . $userEmail;
+//                    writeLogs($method_name, $log);
+//                }
+//            }
 
             $responseArray[0]['faultCode'] = "OK";
 
