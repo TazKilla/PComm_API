@@ -7,7 +7,7 @@
  */
 
 /*
- * PHP PComm XMLRPC Server
+ * PHP PComm XMLRPC Server entry points
  */
 
 require_once ('pcws_Config.php');
